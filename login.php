@@ -19,25 +19,28 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
    $result = mysqli_query($conn, $query);
 
    if ($result) {
-      $row = mysqli_fetch_assoc($result);
-      $hashedPassword = $row['password_hash'];
+      if(mysqli_num_rows($result) > 0) {
+         $row = mysqli_fetch_assoc($result);
+         $hashedPassword = $row['password_hash'];
 
-      if (password_verify($password, $hashedPassword)) {
-         $_SESSION['username'] = $username;
-         header('location: ../gestion-des-ressources/users/index.php');
-         die();
+         if (password_verify($password, $hashedPassword)) {
+            $_SESSION['username'] = $username;
+            header('location: ../gestion-des-ressources/users/index.php');
+            die();
+         } else {
+            $msg = "Incorrect password";
+         }
       } else {
-         $msg = "Incorrect password";
-
+         $msg = "Username not found";
       }
    } else {
-      $msg = "Error executing the query";
-
+      $msg = "Query failed";
    }
 
    $conn->close();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
