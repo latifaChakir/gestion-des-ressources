@@ -20,39 +20,40 @@
 
 <body>
 
-<?php
-if (isset($_GET['id'])) {
-	include("connect.php");
-	$id = $_GET['id'];
-	$sql = "SELECT * FROM utilisateur WHERE user_id=$id";
-	$result = mysqli_query($conn, $sql);
-	$row = mysqli_fetch_array($result);
+	<?php
+	if (isset($_GET['id'])) {
+		include("connect.php");
+		$id = $_GET['id'];
+		$sql = "SELECT * FROM utilisateur WHERE user_id=$id";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_fetch_array($result);
 
-}
-?>
-			<form method="post" action="edit.php">
-				<div class="modal-header">
-					<h4 class="modal-title">Edit Employee</h4>
-					
+	}
+	?>
+	<form method="post" action="edit.php">
+		<div class="container mt-5">
+			<div class="modal-header">
+				<h4 class="modal-title">View User</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label>Name</label>
+					<input type="text" class="form-control" name="nom" required
+						value="<?php echo isset($row["nom"]) ? $row["nom"] : ''; ?>">
 				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<label>Name</label>
-						<input type="text" class="form-control" name="nom" required
-							value="<?php echo isset($row["nom"]) ? $row["nom"] : ''; ?>">
-					</div>
-					<div class="form-group">
-						<label>Email</label>
-						<input type="email" class="form-control" name="email" required
-							value="<?php echo isset($row["email"]) ? $row["email"] : ''; ?>">
-					</div>
+				<div class="form-group">
+					<label>Email</label>
+					<input type="email" class="form-control" name="email" required
+						value="<?php echo isset($row["email"]) ? $row["email"] : ''; ?>">
+				</div>
 
-				</div>
-				<div class="modal-footer">
-					<a href="index.php"><input type="button" class="btn btn-default" data-dismiss="modal" value="Back" ></a>
-					<input type="submit" class="btn btn-info" value="Save" disabled>
-				</div>
-			</form>
+			</div>
+			<div class="modal-footer">
+				<a href="index.php"><input type="button" class="btn btn-default" data-dismiss="modal" value="Back"></a>
+				<input type="submit" class="btn btn-info" value="Save" disabled>
+			</div>
+		</div>
+	</form>
 </body>
 
 </html>

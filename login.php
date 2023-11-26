@@ -26,9 +26,11 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
          die();
       } else {
          $msg = "Incorrect password";
+
       }
    } else {
       $msg = "Error executing the query";
+
    }
 
    $conn->close();
@@ -44,7 +46,6 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-   <link rel="stylesheet" href="style.css">
    <title>Ludiflex | Login & Registration</title>
 </head>
 
@@ -52,12 +53,13 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
    <div class="wrapper">
       <nav class="nav">
          <div class="nav-logo">
-            <p>LOGO .</p>
+            <p>MY RESSOURCES</p>
          </div>
-        
+
          <div class="nav-button">
-            <button  class="btn white-btn" id="loginBtn">Sign In</button>
-            <button class="btn" id="registerBtn" onclick="window.location.href='../gestion-des-ressources/register.php'">Sign Up</button>
+            <button class="btn white-btn" id="loginBtn">Sign In</button>
+            <button class="btn" id="registerBtn"
+               onclick="window.location.href='../gestion-des-ressources/register.php'">Sign Up</button>
          </div>
          <div class="nav-menu-btn">
             <i class="bx bx-menu" onclick="myMenuFunction()"></i>
@@ -71,7 +73,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
          <div class="login-container" id="login">
             <div class="top">
-               <span>Don't have an account? <a href="../gestion-des-ressources/register.php" >Sign Up</a></span>
+               <span>Don't have an account? <a href="../gestion-des-ressources/register.php">Sign Up</a></span>
                <header>Login</header>
             </div>
             <form method="post">
@@ -87,11 +89,14 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                   <input type="submit" class="submit" value="Sign In">
                </div>
             </form>
+            <div class="field_error">
+               <?php echo $msg ?>
+            </div>
 
          </div>
 
-         
-        
+
+
       </div>
    </div>
 </body>
@@ -105,12 +110,13 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
    }
-   a{
-        text-decoration: none;
-    }
+
+   a {
+      text-decoration: none;
+   }
 
    body {
-      background: url("images/1.jpg");
+      background-color: #435d7d;
       background-size: cover;
       background-repeat: no-repeat;
       background-attachment: fixed;
@@ -193,6 +199,11 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
    .nav-menu-btn {
       display: none;
+   }
+
+   .field_error {
+      color: red;
+      margin-top: 15px;
    }
 
    .form-box {
@@ -389,20 +400,20 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 </style>
 
 
-   <script>
+<script>
 
-      function myMenuFunction() {
-         var i = document.getElementById("navMenu");
+   function myMenuFunction() {
+      var i = document.getElementById("navMenu");
 
-         if (i.className === "nav-menu") {
-            i.className += " responsive";
-         } else {
-            i.className = "nav-menu";
-         }
+      if (i.className === "nav-menu") {
+         i.className += " responsive";
+      } else {
+         i.className = "nav-menu";
       }
+   }
 
-   </script>
+</script>
 
-   </body>
+</body>
 
 </html>

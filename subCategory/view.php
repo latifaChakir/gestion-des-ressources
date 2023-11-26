@@ -16,53 +16,56 @@
 </head>
 
 <body>
-  
-    <form id="employeeForm" method="post" >
-    <div class="modal-header">
-        <h4 class="modal-title">Edit Subcategory</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    </div>
-    <div class="modal-body">
-        <?php
-        if (isset($_GET['id'])) {
-            include("connect.php");
-            $id = $_GET['id'];
-            $sql = "SELECT * FROM subcategory WHERE sub_categorie_id=$id";
-            $result = mysqli_query($conn, $sql);
-            $subCategory = mysqli_fetch_array($result);
-        }
-        ?>
+    <div class="container mt-5">
+        <form id="employeeForm" method="post">
+            <div class="modal-header">
+                <h4 class="modal-title">View Subcategory</h4>
 
-        <div class="form-group">
-            <label>Subcategory name</label>
-            <input type="text" class="form-control" name="name_sub_categorie" required value="<?php echo $subCategory['name_sub_categorie']; ?>">
-        </div>
-        <div class="form-group">
-            <label>Category</label>
-            <select class="form-control" name="name_categorie" required>
+            </div>
+            <div class="modal-body">
                 <?php
-                $categoryQuery = "SELECT categorie_id, name_categorie FROM categorie";
-                $categoryResult = $conn->query($categoryQuery);
-
-                if (!$categoryResult) {
-                    die("Error: " . $categoryQuery . "<br>" . $conn->error);
+                if (isset($_GET['id'])) {
+                    include("connect.php");
+                    $id = $_GET['id'];
+                    $sql = "SELECT * FROM subcategory WHERE sub_categorie_id=$id";
+                    $result = mysqli_query($conn, $sql);
+                    $subCategory = mysqli_fetch_array($result);
                 }
-
-                while ($row = $categoryResult->fetch_assoc()) {
-                    $selected = ($subCategory['categorie_id'] == $row['categorie_id']) ? 'selected' : '';
-                    echo "<option value='{$row['name_categorie']}' $selected>{$row['name_categorie']}</option>";
-                }
-
-                $conn->close();
                 ?>
-            </select>
-        </div>
+
+                <div class="form-group">
+                    <label>Subcategory name</label>
+                    <input type="text" class="form-control" name="name_sub_categorie" required
+                        value="<?php echo $subCategory['name_sub_categorie']; ?>">
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select class="form-control" name="name_categorie" required>
+                        <?php
+                        $categoryQuery = "SELECT categorie_id, name_categorie FROM categorie";
+                        $categoryResult = $conn->query($categoryQuery);
+
+                        if (!$categoryResult) {
+                            die("Error: " . $categoryQuery . "<br>" . $conn->error);
+                        }
+
+                        while ($row = $categoryResult->fetch_assoc()) {
+                            $selected = ($subCategory['categorie_id'] == $row['categorie_id']) ? 'selected' : '';
+                            echo "<option value='{$row['name_categorie']}' $selected>{$row['name_categorie']}</option>";
+                        }
+
+                        $conn->close();
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="subCategorie.php"><input type="button" class="btn btn-default" data-dismiss="modal"
+                        value="Cancel"></a>
+                <input type="submit" class="btn btn-success" value="Save Changes" disabled>
+            </div>
+        </form>
     </div>
-    <div class="modal-footer">
-    <a href="subCategorie.php"><input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"></a>
-        <input type="submit" class="btn btn-success" value="Save Changes" disabled>
-    </div>
-    </form>
 </body>
 
 </html>

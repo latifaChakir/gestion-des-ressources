@@ -9,19 +9,20 @@ if (!$conn) {
 }
 
 $msg = '';
+$colorClass = '';
 
+// Vérifier si le formulaire a été soumis
 if (isset($_POST['submit'])) {
-
     $username = htmlspecialchars($_POST['username'], ENT_QUOTES);
     $email = htmlspecialchars($_POST['email'], ENT_QUOTES);
     $password = htmlspecialchars($_POST['password'], ENT_QUOTES);
-
 
     $check_user_query = "SELECT * FROM useraccounts WHERE username = '$username' OR email = '$email'";
     $check_user_result = mysqli_query($conn, $check_user_query);
 
     if (mysqli_num_rows($check_user_result) > 0) {
         $msg = "Ce nom d'utilisateur ou cette adresse e-mail est déjà pris.";
+        $colorClass = "danger";
     } else {
         // Hachage du mot de passe
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -32,16 +33,18 @@ if (isset($_POST['submit'])) {
 
         if ($insert_user_result) {
             $msg = "Inscription réussie. Vous pouvez maintenant vous connecter.";
+            $colorClass = "success";
         } else {
             $msg = "Erreur lors de l'inscription. Veuillez réessayer.";
+            $colorClass = "danger";
         }
     }
 }
 
-
 // Fermeture de la connexion
 mysqli_close($conn);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,12 +63,13 @@ mysqli_close($conn);
     <div class="wrapper">
         <nav class="nav">
             <div class="nav-logo">
-                <p>LOGO .</p>
+                <p>MY RESSOURCES </p>
             </div>
-           
+
             <div class="nav-button">
-            
-                <button class="btn" id="registerBtn" onclick="window.location.href='../gestion-des-ressources/login.php'">Sign In</button>
+
+                <button class="btn" id="registerBtn"
+                    onclick="window.location.href='../gestion-des-ressources/login.php'">Sign In</button>
                 <button class="btn" id="registerBtn">Sign Up</button>
             </div>
             <div class="nav-menu-btn">
@@ -100,6 +104,10 @@ mysqli_close($conn);
                         <input type="submit" name="submit" class="submit" value="Register">
                     </div>
                 </form>
+                <div class="field_error <?php echo $colorClass; ?>">
+    <?php echo $msg; ?>
+</div>
+
 
             </div>
         </div>
@@ -117,12 +125,26 @@ mysqli_close($conn);
     }
 
     body {
-        background: url("images/1.jpg");
+        background-color: #435d7d;
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
         overflow: hidden;
+        
     }
+    .field_error {
+    margin-top: 15px;
+}
+
+.field_error.success {
+    color: green; /* Couleur verte pour le succès */
+}
+
+.field_error.danger {
+    color: red; /* Couleur rouge pour l'échec */
+}
+
+
 
     .wrapper {
         display: flex;
@@ -143,7 +165,8 @@ mysqli_close($conn);
         background: linear-gradient(rgba(39, 39, 39, 0.6), transparent);
         z-index: 100;
     }
-    a{
+
+    a {
         text-decoration: none;
     }
 
@@ -204,6 +227,7 @@ mysqli_close($conn);
     .nav-menu-btn {
         display: none;
     }
+  
 
     .form-box {
         position: relative;

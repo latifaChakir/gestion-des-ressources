@@ -49,27 +49,25 @@
 	$conn->close();
 	?>
 
-	<form method="post">
-		<div class="modal-header">
-			<h4 class="modal-title">Edit Employee</h4>
-		</div>
-		<div class="form-group">
-			<label>Name</label>
-			<input type="text" class="form-control" name="nom" required value="<?php echo $row['nom'] ?>">
-		</div>
-		<div class="form-group">
-			<label>Email</label>
-			<input type="email" class="form-control" name="email" required value="<?php echo $row['email'] ?>">
-		</div>
+<form method="post">
+    <div class="container mt-5">
+        <h4>Edit User</h4>
+        <div class="form-group" >
+            <label for="nom">Name:</label>
+            <input type="text" class="form-control" id="nom" name="nom" required value="<?php echo $row['nom'] ?>">
+        </div>
+        <div class="form-group" >
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" required value="<?php echo $row['email'] ?>">
+        </div>
+        <div class="form-group">
+            <a href="index.php" class="btn btn-secondary">Cancel</a>
+            <input type="submit" class="btn btn-primary" value="Save">
+        </div>
+    </div>
+</form>
 
-		<div class="modal-footer">
-		<a href="index.php"><input type="button" class="btn btn-default" value="Cancel" ></a>
-			<input type="submit" class="btn btn-info" value="Save">
-		</div>
-	</form>
 
-
-	
 </body>
 
 </html>

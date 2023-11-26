@@ -26,29 +26,29 @@
 			<li>
 				<a href="../users/#homeSubmenu" class="nav-link">
 					<i class="nav-icon fas fa-table"></i>
-						Users
+					Users
 				</a>
 
 
 			</li>
 			<li>
 				<a href="../categorie/categorie.php" class="nav-link">
-				<i class="nav-icon fas fa-columns"></i>
+					<i class="nav-icon fas fa-columns"></i>
 					Categories</a>
 			</li>
 			<li>
 				<a href="../subCategory/subCategorie.php" class="nav-link">
-				<i class="nav-icon far fa-plus-square"></i>
+					<i class="nav-icon far fa-plus-square"></i>
 					SubCategories</a>
 			</li>
 			<li>
 				<a href="../ressource/index.php" class="nav-link">
-				<i class="nav-icon fas fa-copy"></i>
+					<i class="nav-icon fas fa-copy"></i>
 					Ressources</a>
 			</li>
 			<li>
 				<a href="../statistique/index.php" class="nav-link">
-				<i class="nav-icon fas fa-chart-pie"></i>
+					<i class="nav-icon fas fa-chart-pie"></i>
 					Statistiques</a>
 			</li>
 		</ul>
@@ -224,6 +224,9 @@
 			.table-title h2 {
 				margin: 5px 0 0;
 				font-size: 24px;
+			}
+			.nav-item{
+				list-style: none;
 			}
 
 			.table-title .btn-group {
@@ -495,7 +498,7 @@
 			}
 
 			.navbar {
-				
+
 				background: #fff;
 				border: none;
 				border-radius: 0;
@@ -540,9 +543,9 @@
 
 			#sidebar .sidebar-header {
 				padding: 20px;
-				background:#435d7d;
+				background: #435d7d;
 				border-bottom: 1px solid #47748b;
-				
+
 			}
 
 			#sidebar ul.components {

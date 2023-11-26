@@ -20,34 +20,37 @@
 
 <body>
 
-<?php
-if (isset($_GET['id'])) {
-	include("connect.php");
-	$id = $_GET['id'];
-	$sql = "SELECT * FROM categorie WHERE categorie_id=$id";
-	$result = mysqli_query($conn, $sql);
-	$row = mysqli_fetch_array($result);
+	<?php
+	if (isset($_GET['id'])) {
+		include("connect.php");
+		$id = $_GET['id'];
+		$sql = "SELECT * FROM categorie WHERE categorie_id=$id";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_fetch_array($result);
 
-}
-?>
-			<form method="post" action="edit.php">
-				<div class="modal-header">
-					<h4 class="modal-title">Edit categorie</h4>
-					
+	}
+	?>
+	<div class="container mt-5">
+		<form method="post" action="edit.php">
+			<div class="modal-header">
+				<h4 class="modal-title">View category</h4>
+
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label>Name</label>
+					<input type="text" class="form-control" name="name_categorie" required
+						value="<?php echo isset($row["name_categorie"]) ? $row["name_categorie"] : ''; ?>">
 				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<label>Name</label>
-						<input type="text" class="form-control" name="name_categorie" required
-							value="<?php echo isset($row["name_categorie"]) ? $row["name_categorie"] : ''; ?>">
-					</div>
-				
-				</div>
-				<div class="modal-footer">
-				<a href="categorie.php"><input type="button" class="btn btn-default" data-dismiss="modal" value="Back" ></a>
-					<input type="submit" class="btn btn-info" value="Save" disabled>
-				</div>
-			</form>
+
+			</div>
+			<div class="modal-footer">
+				<a href="categorie.php"><input type="button" class="btn btn-default" data-dismiss="modal"
+						value="Back"></a>
+				<input type="submit" class="btn btn-info" value="Save" disabled>
+			</div>
+		</form>
+	</div>
 </body>
 
 </html>

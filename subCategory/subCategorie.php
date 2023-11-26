@@ -72,7 +72,7 @@
 
                                 <td>
                                     <a href="view.php?id=<?php echo $data['sub_categorie_id']; ?>" class="btn btn-info">Read
-                                        More</a>
+                                        </a>
                                     <a class="btn btn-warning"
                                         href="edit.php?id=<?php echo $data['sub_categorie_id']; ?>">Edit</a>
                                     <a href="delete.php?id=<?php echo $data['sub_categorie_id']; ?>"
@@ -109,7 +109,7 @@
             <div class="modal-content">
                 <form id="employeeForm" method="post" action="add.php">
                     <div class="modal-header">
-                        <h4 class="modal-title">Add Employee</h4>
+                        <h4 class="modal-title">Add subCategory</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">

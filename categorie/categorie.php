@@ -63,7 +63,7 @@
 
 										<td>
 											<a  href="view.php?id=<?php echo $data['categorie_id']; ?>" class="btn btn-info">Read
-												More</a>
+												</a>
 												<a class="btn btn-warning" href="edit.php?id=<?php echo $data['categorie_id']; ?>">Edit</a>
 											<a href="delete.php?id=<?php echo $data['categorie_id']; ?>"
 												class="btn btn-danger">Delete</a>

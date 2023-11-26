@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../assets/css/adminlte.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
 </head>
@@ -172,6 +173,90 @@
             </div>
         </div>
     </section>
+
+    <style>
+        .line-chart {
+            height: 300px; 
+            width: 800px;
+        }
+    </style>
+
+    <!-- ... div pour afficher le graphique en ligne ... -->
+    <div class="line-chart">
+        <canvas id="line-chart"></canvas>
+    </div>
+
+    <!-- ... votre code JavaScript ... -->
+    <script>
+        /* global Chart:false */
+
+        $(function () {
+            'use strict'
+
+            var ticksStyle = {
+                fontColor: '#495057',
+                fontStyle: 'bold'
+            }
+
+            var mode = 'index'
+            var intersect = true
+
+            // Nouveau graphique en ligne
+            var $lineChart = $('#line-chart')
+            var lineChart = new Chart($lineChart, {
+                type: 'line',
+                data: {
+                    labels: ['users', 'categories', 'subCategories', 'ressources'],
+                    datasets: [{
+                        data: [<?php echo $totalUsers; ?>, <?php echo $total_categories; ?>,<?php echo $total_SUBcategories; ?>,  <?php echo $total_ressources; ?>],
+                        backgroundColor: 'transparent',
+                        borderColor: '#007bff',
+                        pointBorderColor: '#007bff',
+                        pointBackgroundColor: '#007bff',
+                        fill: false
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: 200
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: false
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
+            })
+        })
+    </script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
 </body>
 
 </html>

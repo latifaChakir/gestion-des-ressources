@@ -43,63 +43,66 @@
         $ressource = mysqli_fetch_array($result);
     }
     ?>
-    <form id="employeeForm" method="post">
-        <div class="modal-header">
-            <h4 class="modal-title">Edit Subcategory</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        </div>
-        <div class="modal-body">
-            <div class="form-group">
-                <label>Ressource name</label>
-                <input type="text" class="form-control" name="name_ressource" required
-                    value="<?php echo $ressource['name_ressource']; ?>">
+    <div class="container mt-5">
+        <form id="employeeForm" method="post">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Ressource</h4>
+                
             </div>
-            <div class="form-group">
-                <label>Category</label>
-                <select class="form-control" name="name_categorie" required>
-                    <?php
-                    $categoryQuery = "SELECT categorie_id, name_categorie FROM categorie";
-                    $categoryResult = $conn->query($categoryQuery);
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Ressource name</label>
+                    <input type="text" class="form-control" name="name_ressource" required
+                        value="<?php echo $ressource['name_ressource']; ?>">
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select class="form-control" name="name_categorie" required>
+                        <?php
+                        $categoryQuery = "SELECT categorie_id, name_categorie FROM categorie";
+                        $categoryResult = $conn->query($categoryQuery);
 
-                    if (!$categoryResult) {
-                        die("Error: " . $categoryQuery . "<br>" . $conn->error);
-                    }
+                        if (!$categoryResult) {
+                            die("Error: " . $categoryQuery . "<br>" . $conn->error);
+                        }
 
-                    while ($row = $categoryResult->fetch_assoc()) {
-                        $selected = ($ressource['categorie_id'] == $row['categorie_id']) ? 'selected' : '';
+                        while ($row = $categoryResult->fetch_assoc()) {
+                            $selected = ($ressource['categorie_id'] == $row['categorie_id']) ? 'selected' : '';
 
-                        echo "<option value='{$row['categorie_id']}' $selected>{$row['name_categorie']}</option>";
-                    }
-                    ?>
-                </select>
+                            echo "<option value='{$row['categorie_id']}' $selected>{$row['name_categorie']}</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>subCategory</label>
+                    <select class="form-control" name="name_sub_categorie" required>
+                        <?php
+                        $subcategoryQuery = "SELECT sub_categorie_id, name_sub_categorie FROM subcategory";
+                        $subcategoryResult = $conn->query($subcategoryQuery);
+
+                        if (!$subcategoryResult) {
+                            die("Error: " . $subcategoryQuery . "<br>" . $conn->error);
+                        }
+
+                        while ($row = $subcategoryResult->fetch_assoc()) {
+                            $selected = ($ressource['categorie_id'] == $row['categorie_id']) ? 'selected' : '';
+
+                            echo "<option value='{$row['sub_categorie_id']}' $selected>{$row['name_sub_categorie']}</option>";
+
+                        }
+
+                        ?>
+                    </select>
+                </div>
             </div>
-            <div class="form-group">
-                <label>subCategory</label>
-                <select class="form-control" name="name_sub_categorie" required>
-                    <?php
-                    $subcategoryQuery = "SELECT sub_categorie_id, name_sub_categorie FROM subcategory";
-                    $subcategoryResult = $conn->query($subcategoryQuery);
-
-                    if (!$subcategoryResult) {
-                        die("Error: " . $subcategoryQuery . "<br>" . $conn->error);
-                    }
-
-                    while ($row = $subcategoryResult->fetch_assoc()) {
-                        $selected = ($ressource['categorie_id'] == $row['categorie_id']) ? 'selected' : '';
-
-                        echo "<option value='{$row['sub_categorie_id']}' $selected>{$row['name_sub_categorie']}</option>";
-
-                    }
-
-                    ?>
-                </select>
+            <div class="modal-footer">
+            <a href="index.php"><input type="button" class="btn btn-default" data-dismiss="modal"
+                        value="Cancel"></a>
+                <input type="submit" class="btn btn-success" value="Save Changes">
             </div>
-        </div>
-        <div class="modal-footer">
-        <a href="subCategorie.php"><input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"></a>
-            <input type="submit" class="btn btn-success" value="Save Changes">
-        </div>
-    </form>
+        </form>
+    </div>
     <?php
     $conn->close();
     ?>

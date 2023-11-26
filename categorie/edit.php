@@ -46,25 +46,26 @@
 
 	$conn->close();
 	?>
-
-	<form method="post">
-		<div class="modal-header">
-			<h4 class="modal-title">Edit Employee</h4>
-		</div>
-		<div class="form-group">
-			<label>Name</label>
-			<input type="text" class="form-control" name="name_categorie" required value="<?php echo $row['name_categorie'] ?>">
-		</div>
-	
-
-		<div class="modal-footer">
-		<a href="categorie.php"><input type="button" class="btn btn-default" value="Cancel" ></a>
-			<input type="submit" class="btn btn-info" value="Save">
-		</div>
-	</form>
+	<div class="container mt-5">
+		<form method="post">
+			<div class="modal-header">
+				<h4 class="modal-title">Edit Category</h4>
+			</div>
+			<div class="form-group">
+				<label>Name</label>
+				<input type="text" class="form-control" name="name_categorie" required
+					value="<?php echo $row['name_categorie'] ?>">
+			</div>
 
 
-	
+			<div class="modal-footer">
+				<a href="categorie.php"><input type="button" class="btn btn-default" value="Cancel"></a>
+				<input type="submit" class="btn btn-info" value="Save">
+			</div>
+		</form>
+	</div>
+
+
 </body>
 
 </html>
