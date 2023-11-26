@@ -53,6 +53,16 @@
 			</li>
 		</ul>
 
+		<?php
+		session_start();
+
+		if (isset($_SESSION['username'])) {
+			$username = $_SESSION['username'];
+
+			echo '<p>Bienvenue, ' . $username . '!</p>';
+		}
+		?>
+
 	</nav>
 
 	<!-- Page Content  -->
@@ -225,7 +235,8 @@
 				margin: 5px 0 0;
 				font-size: 24px;
 			}
-			.nav-item{
+
+			.nav-item {
 				list-style: none;
 			}
 

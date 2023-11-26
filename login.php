@@ -14,6 +14,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
    $username = $_POST['username'];
    $password = $_POST['password'];
 
+   session_start();
    $query = "SELECT * FROM useraccounts WHERE username = '$username'";
    $result = mysqli_query($conn, $query);
 
@@ -22,6 +23,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
       $hashedPassword = $row['password_hash'];
 
       if (password_verify($password, $hashedPassword)) {
+         $_SESSION['username'] = $username;
          header('location: ../gestion-des-ressources/users/index.php');
          die();
       } else {
