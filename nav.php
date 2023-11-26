@@ -59,7 +59,8 @@
 		if (isset($_SESSION['username'])) {
 			$username = $_SESSION['username'];
 
-			echo '<p>Bienvenue, ' . $username . '!</p>';
+			echo '<p style="font-size: 17px;">Bienvenue, <span class="username">' . $username . '</span>!</p>';
+
 		}
 		?>
 
@@ -208,6 +209,15 @@
 				font-family: 'Varela Round', sans-serif;
 				font-size: 13px;
 			}
+			
+
+			.username {
+				font-weight: bold;
+				color: #fff;
+				
+			}
+
+
 
 			.table-responsive {
 				margin: 30px 0;
